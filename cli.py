@@ -6,7 +6,7 @@
 
 import sys
 import argparse
-from config import ConfigFileNotFoundError, ConfigManager, ConfigError
+from config import *
 from practice2.maven_parser import MavenParser, MavenError
 
 
