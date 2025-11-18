@@ -1,0 +1,3 @@
+# Dependency Visualizer - Stage 1
+# No external dependencies required yet
+# Using only standard Python libraries
