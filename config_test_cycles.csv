@@ -1,0 +1,5 @@
+parameter,value
+package_name,A
+repository_url,test_repo_cycles.txt
+test_repo_mode,True
+filter_substring,
