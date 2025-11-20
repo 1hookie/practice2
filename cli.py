@@ -7,9 +7,10 @@ from test_repository import TestRepository
 
 
 def main():
-    parser = argparse.ArgumentParser(description='Визуализатор графа зависимостей - Этап 3')
+    parser = argparse.ArgumentParser(description='Визуализатор графа зависимостей - Этап 4')
     parser.add_argument('--config', default='config.csv', help='Конфигурационный файл')
     parser.add_argument('--depth', type=int, default=3, help='Глубина обхода')
+    parser.add_argument('--reverse', help='Показать обратные зависимости для пакета')
     
     args = parser.parse_args()
     config_manager = ConfigManager(args.config)
@@ -44,10 +45,13 @@ def main():
             max_depth=args.depth
         )
         
-        dependency_graph.display_dependency_info(
-            root_package=config['package_name'],
-            filter_substring=config['filter_substring']
-        )
+        if args.reverse:
+            dependency_graph.display_reverse_dependencies(args.reverse)
+        else:
+            dependency_graph.display_dependency_info(
+                root_package=config['package_name'],
+                filter_substring=config['filter_substring']
+            )
         
         print(f"\nСтатистика:")
         print(f"  Пакетов: {graph_data['total_packages']}")
