@@ -8,6 +8,9 @@ def demonstrate_reverse_dependencies():
     
     test_repo = TestRepository('test_repo_complex.txt')
     test_repo.load_test_repository()
+
+    #graph.display_graph_structure()
+
     
     graph = DependencyGraph(test_repository=test_repo)
     graph.build_dependency_graph_bfs('A', max_depth=4)
@@ -24,7 +27,6 @@ def demonstrate_reverse_dependencies():
     print("\n4. Обратные зависимости для I:")
     graph.display_reverse_dependencies('I')
 
-    graph.display_graph_structure()
 
 
 if __name__ == "__main__":

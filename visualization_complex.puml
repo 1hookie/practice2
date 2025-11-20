@@ -1,0 +1,43 @@
+@startuml
+title Сложный граф зависимостей
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam packageStyle rectangle
+
+' Стили для пакетов
+skinparam node {
+    backgroundColor White
+    borderColor Black
+    fontSize 12
+}
+
+' Корневой пакет
+node "A" as root #LightBlue
+
+node "B" as B
+node "C" as C
+node "D" as D
+node "E" as E
+node "F" as F
+node "G" as G
+node "H" as H
+node "I" as I
+node "J" as J
+node "K" as K
+node "L" as L
+node "M" as M
+
+root --> B
+root --> C
+B --> D
+B --> E
+C --> F
+C --> G
+D --> H
+E --> I
+E --> J
+F --> K
+F --> L
+G --> M
+@enduml

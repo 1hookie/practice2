@@ -1,0 +1,29 @@
+@startuml
+title Граф с циклическими зависимостями
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Arial
+skinparam packageStyle rectangle
+
+' Стили для пакетов
+skinparam node {
+    backgroundColor White
+    borderColor Black
+    fontSize 12
+}
+
+' Корневой пакет
+node "A" as root #LightBlue
+
+node "B" as B
+node "C" as C
+node "D" as D
+node "F" as F
+
+root --> B
+root --> C
+B --> D
+C --> A
+C --> F
+D --> B
+@enduml

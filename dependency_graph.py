@@ -1,6 +1,7 @@
 from collections import deque
 from maven_parser import MavenParser
 from test_repository import TestRepository
+from visualizer import PlantUMLVisualizer
 
 
 class DependencyGraph:
@@ -203,3 +204,12 @@ class DependencyGraph:
                 print(f"  Цикл {i}: {' -> '.join(cycle)}")
         
         print("=" * 50)
+    
+    def generate_plantuml_visualization(self, root_package: str, title: str = None):
+        """Генерирует визуализацию графа в PlantUML"""
+        if not title:
+            title = f"Граф зависимостей для {root_package}"
+        
+        visualizer = PlantUMLVisualizer()
+        plantuml_code = visualizer.generate_plantuml(self.graph, root_package, title)
+        return visualizer, plantuml_code

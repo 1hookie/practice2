@@ -31,6 +31,39 @@ class MavenParser:
         self.repository_url = repository_url or self.MAVEN_CENTRAL
         self.dependencies_cache = {}
     
+    def extract_dependencies_from_pom(self, pom_content: str):
+        """Извлекает зависимости из POM-файла"""
+        try:
+            namespaces = {'ns': 'http://maven.apache.org/POM/4.0.0'}
+            root = ET.fromstring(pom_content)
+            
+            dependencies = []
+            
+            for dep in root.findall('.//ns:dependencies/ns:dependency', namespaces):
+                group_id_elem = dep.find('ns:groupId', namespaces)
+                artifact_id_elem = dep.find('ns:artifactId', namespaces)
+                version_elem = dep.find('ns:version', namespaces)
+                
+                if group_id_elem is not None and artifact_id_elem is not None:
+                    version = version_elem.text if version_elem is not None else 'LATEST'
+                    
+                    # Пропускаем зависимости без версии (кроме BOM)
+                    if version == 'UNKNOWN':
+                        continue
+                        
+                    dependency = {
+                        'group_id': group_id_elem.text,
+                        'artifact_id': artifact_id_elem.text,
+                        'version': version,
+                        'scope': 'compile'
+                    }
+                    dependencies.append(dependency)
+            
+            return dependencies
+            
+        except ET.ParseError as e:
+            raise MavenError(f"Ошибка парсинга POM: {e}")
+
     def parse_maven_identifier(self, package_name: str) -> Dict[str, str]:
         """
         Парсит идентификатор Maven-пакета в формате groupId:artifactId:version
