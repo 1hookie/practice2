@@ -3,9 +3,14 @@ Graphism realisation in practice№2
 
 
 
-Файлы .puml для запуска в PlantUML сохранены в соответсвующие файлы
+Файлы .puml для запуска в PlantUML сохранены в соответсвующие файлов:
+visualization_simple.puml
+visualization_cycles.puml
+visualization_complex.puml
 
-Чтобы запустить перейдите по ссылке и вставьте код из файла 
+Чтобы запустить перейдите по ссылке и вставьте код из файла
+
+
 http://www.plantuml.com/plantuml/
 
 ---
